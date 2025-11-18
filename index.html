@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Полный курс SQL: От новичка до профессионала</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span class="logo-icon">📚</span>
+                    <h1>SQL Academy</h1>
+                </div>
+                <div class="progress-circle">
+                    <svg viewBox="0 0 100 100">
+                        <circle class="progress-circle-bg" cx="50" cy="50" r="45"></circle>
+                        <circle class="progress-circle-fill" cx="50" cy="50" r="45" style="stroke-dashoffset: 282.7"></circle>
+                    </svg>
+                    <div class="progress-text">
+                        <span class="progress-percent">0%</span>
+                        <span class="progress-label">Завершено</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar-controls">
+                <button class="btn-control" id="resetProgressBtn" title="Сбросить прогресс">
+                    <span>🔄</span> Сбросить
+                </button>
+                <button class="btn-control" id="printCertBtn" title="Скачать сертификат">
+                    <span>📜</span> Сертификат
+                </button>
+            </div>
+
+            <nav class="course-nav">
+                <div class="nav-search">
+                    <input type="text" id="searchInput" placeholder="Поиск глав..." class="search-input">
+                </div>
+                <div class="nav-content" id="navContent">
+                    <!-- Заполняется динамически -->
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-header">
+                <button class="btn-menu-toggle" id="menuToggle">☰</button>
+                <div class="breadcrumb" id="breadcrumb"></div>
+                <div class="header-controls">
+                    <button class="btn-theme-toggle" id="themeToggle" title="Переключить тему">
+                        🌙
+                    </button>
+                </div>
+            </div>
+
+            <div class="content-wrapper">
+                <article class="chapter-content" id="chapterContent">
+                    <!-- Заполняется динамически -->
+                </article>
+
+                <div class="chapter-navigation">
+                    <button class="btn-nav btn-prev" id="prevBtn">← Предыдущая</button>
+                    <div class="chapter-progress">
+                        <span id="currentChapter">1</span> / <span id="totalChapters">1</span>
+                    </div>
+                    <button class="btn-nav btn-next" id="nextBtn">Следующая →</button>
+                </div>
+
+                <div class="chapter-actions">
+                    <button class="btn-action btn-mark-complete" id="markCompleteBtn">
+                        <span class="icon">✓</span> Отметить как пройденное
+                    </button>
+                    <button class="btn-action btn-bookmark" id="bookmarkBtn">
+                        <span class="icon">☆</span> Добавить в закладки
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Right Sidebar - Bookmarks & Stats -->
+        <aside class="right-sidebar">
+            <div class="sidebar-tabs">
+                <button class="tab-btn active" data-tab="bookmarks">📌 Закладки</button>
+                <button class="tab-btn" data-tab="stats">📊 Статистика</button>
+            </div>
+
+            <div class="tab-content active" id="bookmarksTab">
+                <div class="bookmarks-list" id="bookmarksList">
+                    <p class="empty-message">Нет закладок</p>
+                </div>
+            </div>
+
+            <div class="tab-content" id="statsTab">
+                <div class="stats-container">
+                    <div class="stat-item">
+                        <div class="stat-label">Всего глав</div>
+                        <div class="stat-value" id="totalChaptersStats">0</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Пройдено</div>
+                        <div class="stat-value" id="completedChaptersStats">0</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Времени учёбы</div>
+                        <div class="stat-value" id="studyTimeStats">0ч</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Серия дней</div>
+                        <div class="stat-value" id="streakStats">0</div>
+                    </div>
+                </div>
+
+                <div class="stats-details">
+                    <h4>Статус завершения</h4>
+                    <div class="completion-by-section" id="completionBySection">
+                        <!-- Заполняется динамически -->
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal" id="certificateModal">
+        <div class="modal-content certificate-modal">
+            <button class="modal-close">×</button>
+            <div class="certificate" id="certificate">
+                <div class="certificate-decoration certificate-top">★ ❉ ★</div>
+                <h2 class="certificate-title">Сертификат о завершении</h2>
+                <p class="certificate-text">Сертификат выдан</p>
+                <p class="certificate-name" id="certificateName">Студент SQL Academy</p>
+                <p class="certificate-text">за успешное прохождение курса</p>
+                <p class="certificate-course">"Полный курс SQL: От новичка до профессионала"</p>
+                <p class="certificate-text">Дата выдачи: <span id="certificateDate"></span></p>
+                <div class="certificate-decoration certificate-bottom">★ ❉ ★</div>
+            </div>
+            <button class="btn-primary" onclick="window.print()">🖨️ Распечатать</button>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div class="modal" id="settingsModal">
+        <div class="modal-content">
+            <button class="modal-close">×</button>
+            <h2>Настройки</h2>
+            <div class="settings-form">
+                <label>
+                    <input type="text" id="studentNameInput" placeholder="Введите ваше имя" maxlength="50">
+                    <span>Ваше имя для сертификата</span>
+                </label>
+                <label>
+                    <input type="checkbox" id="notificationsToggle" checked>
+                    <span>Показывать уведомления</span>
+                </label>
+                <label>
+                    <input type="checkbox" id="codeHighlightToggle" checked>
+                    <span>Подсветка кода</span>
+                </label>
+                <div class="form-actions">
+                    <button class="btn-primary" onclick="saveSettings()">Сохранить</button>
+                    <button class="btn-secondary" onclick="closeModal('settingsModal')">Отмена</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="modal-overlay" id="modalOverlay"></div>
+
+    <script src="course-data.js"></script>
+    <script src="course.js"></script>
+</body>
+</html>
