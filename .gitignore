@@ -1,0 +1,76 @@
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+*.postgres_dump
+*.sql.dump
+
+# Temporary files
+*.tmp
+*.bak
+*.backup
+*.log
+*.pid
+
+# Python files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+
+# OS files
+Thumbs.db
+.AppleDouble
+.LSOverride
+
+# Node.js
+node_modules/
+npm-debug.log
+
+# Local environment files
+.env
+.env.local
+.env.*.local
+
+# Test output
+*.out
+test-results/
+coverage/
+
+# MacOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Linux
+.directory
+.Trash-*
+
+# Markdown temporary files
+*.md~
+.markdownlint.json~
+
+# PDF and other documents (uncomment if needed)
+# *.pdf
+# *.doc
+# *.docx
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
